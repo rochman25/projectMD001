@@ -10,6 +10,7 @@
     </head>
     <body class="login">
         <div>
+            <?php // $this->load->view('master/header') ?>
             <div class="login_wrapper">
                 <div class="animate form login_form">
                     <section class="login_content">

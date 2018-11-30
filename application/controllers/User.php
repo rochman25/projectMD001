@@ -32,9 +32,70 @@ class User extends CI_Controller {
         if (!$this->checkSession()) {
             $data['login'] = "user";
             $this->load->view('master/login', $data);
-        } else  {
-            echo "selamat datang user " . $this->session->userdata('nidn') . '<br>';
-            echo "<a href='logout'>logout</a>";
+        } else {
+            $data['page'] = 'user/home';
+            $data['profile'] = $this->DataModel->getWhere('nidn',$this->session->userdata('nidn'));
+            $data['profile'] = $this->DataModel->getData('dosen')->row();
+            $this->load->view('master/dashboard',$data);
+        }
+    }
+
+    function editprofile(){
+        $nidn = $this->session->userdata('nidn');
+        $this->form_validation->set_rules('nidn','Nidn','required');
+        $this->form_validation->set_rules('nama','Nama lengkap','required');
+        $this->form_validation->set_rules('uname','Username','required');
+        $this->form_validation->set_rules('email','Email','required');
+        $this->form_validation->set_rules('alamat','Alamat','required');
+        $this->form_validation->set_rules('prodi','Program Studi','required');
+        $nama = $this->input->post('nama');
+        $email = $this->input->post('email');
+        $alamat = $this->input->post('alamat');
+        $prodi = $this->input->post('prodi');
+        $uname = $this->input->post('uname');
+
+        if($this->form_validation->run() == FALSE){
+            echo "form belum valid";
+        }else{
+            $data = array(
+                'nama' => $nama,
+                'prodi' => $prodi,
+                'username' => $uname,
+                'alamat' => $alamat,
+                'email' => $email
+            );
+            $update = $this->DataModel->getWhere('nidn',$nidn);
+            $update = $this->DataModel->update('dosen',$data);
+            if(!$update){
+                echo "Edit Data Gagal";
+            }else{
+                redirect('user/index');
+            }
+        }
+
+    }
+
+    function usulan(){
+        if (!$this->checkSession()) {
+            $data['login'] = "user";
+            $this->load->view('master/login', $data);
+        } else {
+            $data['page'] = 'user/usulan';
+            $data['profile'] = $this->DataModel->getWhere('nidn',$this->session->userdata('nidn'));
+            $data['profile'] = $this->DataModel->getData('dosen')->row();
+            $this->load->view('master/dashboard',$data);
+        }
+    }
+
+    function evaluasi(){
+        if (!$this->checkSession()) {
+            $data['login'] = "user";
+            $this->load->view('master/login', $data);
+        } else {
+            $data['page'] = 'user/evaluasi';
+            //$data['proposal'] = $this->DataModel->getWhere('nidn',$this->session->userdata('nidn'));
+            //$data['proposal'] = $this->DataModel->getData('dosen')->row();
+            $this->load->view('master/dashboard',$data);
         }
     }
 
@@ -43,6 +104,7 @@ class User extends CI_Controller {
         $this->form_validation->set_rules('pass', 'Password', 'required');
         $uname = $this->input->post('uname');
         $pass = $this->input->post('pass');
+
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('master/login');
         } else {

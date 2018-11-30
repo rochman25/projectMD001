@@ -11,48 +11,90 @@
  *
  * @author zaenur
  */
-class Admin extends CI_Controller {
+class Admin extends CI_Controller
+{
 
-    function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->load->model('DataModel');
         $this->load->library('form_validation');
-        if(!$this->checkSession()){
+        if (!$this->checkSession()) {
             $data['login'] = "admin";
-            $this->load->view('master/login',$data);
+            $this->load->view('master/login', $data);
         }
     }
-    
-    function checkSession() {
+
+    public function checkSession()
+    {
         $cek = $this->session->userdata("id");
         if (empty($cek)) {
-            return FALSE;
+            return false;
         } else {
-            return TRUE;
+            return true;
         }
     }
-    
-    function index(){
+
+    public function index()
+    {
         if (!$this->checkSession()) {
             $data['login'] = "admin";
             $this->load->view('master/login', $data);
         } else {
-            echo "selamat datang admin ".$this->session->userdata('id').'<br>';
-            echo "<a href='logout'>logout</a>";
+            $data['page'] = 'admin/home';
+            $data['profile'] = $this->DataModel->getWhere('id', $this->session->userdata('id'));
+            $data['profile'] = $this->DataModel->getData('admin')->row();
+            $this->load->view('master/dashboard', $data);
         }
     }
-    
-    function login(){
+
+    public function editprofile()
+    {
+
+    }
+
+    public function proposal($param)
+    {
+        if (!$this->checkSession()) {
+            $data['login'] = "admin";
+            $this->load->view('master/login', $data);
+        } else {
+            if ($param == "masuk") {
+                $data['page'] = 'admin/proposal/masuk';
+                $this->load->view('master/dashboard', $data);
+            } else if ($param == "diterima") {
+                $data['page'] = 'admin/proposal/diterima';
+                $this->load->view('master/dashboard', $data);
+            } else if ($param == "ditolak") {
+                $data['page'] = 'admin/proposal/ditolak';
+                $this->load->view('master/dashboard', $data);
+            }
+        }
+    }
+
+    public function laporan()
+    {
+        if (!$this->checkSession()) {
+            $data['login'] = "admin";
+            $this->load->view('master/login', $data);
+        } else {
+            $data['page'] = 'admin/laporan';
+            $this->load->view('master/dashboard', $data);
+        }
+    }
+
+    public function login()
+    {
         $this->form_validation->set_rules('uname', 'Username', 'required');
         $this->form_validation->set_rules('pass', 'Password', 'required');
         $uname = $this->input->post('uname');
         $pass = $this->input->post('pass');
-        if ($this->form_validation->run() == FALSE) {
+        if ($this->form_validation->run() == false) {
             $this->load->view('master/login');
         } else {
             $data = array(
                 "username" => $uname,
-                "password" => $pass
+                "password" => $pass,
             );
             $result = $this->DataModel->Login("admin", $data)->row();
             if ($result != null) {
@@ -63,7 +105,7 @@ class Admin extends CI_Controller {
                     'id' => $id,
                     'username' => $username,
                     'level' => $level,
-                    'status' => "login"
+                    'status' => "login",
                 );
                 $this->session->set_userdata($data_session);
                 redirect(base_url('admin/index'));
@@ -76,8 +118,9 @@ class Admin extends CI_Controller {
             }
         }
     }
-    
-    function logout(){
+
+    public function logout()
+    {
         $this->session->sess_destroy();
         redirect(base_url('admin/index'));
     }

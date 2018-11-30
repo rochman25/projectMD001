@@ -32,6 +32,11 @@ class DataModel extends CI_Model{
         $query = $this->db->get($table);
         return $query;
     }
+
+    function update($table,$data) {
+        $query = $this->db->update($table, $data);
+        return $query;
+    }
     
     function Login($table, $where) {
         return $this->db->get_where($table, $where);
