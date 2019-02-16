@@ -33,8 +33,24 @@ class DataModel extends CI_Model{
         return $query;
     }
 
+    function getJoin($table,$condition,$type){
+        $query = $this->db->join($table, $condition, $type);
+        return $query;
+    }
+
+    function insert($table,$data){
+        $query = $this->db->insert($table,$data);
+        return $query;
+    }
+
     function update($table,$data) {
         $query = $this->db->update($table, $data);
+        return $query;
+    }
+
+    function delete($col, $condition,$table) {
+        $query = $this->db->where($col, $condition);
+        $query = $this->db->delete($table);
         return $query;
     }
     

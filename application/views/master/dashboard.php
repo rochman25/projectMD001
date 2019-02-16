@@ -7,6 +7,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>APLIKASI PPP D</title>
         <?php $this->load->view('master/css'); ?>
+        <style rel="stylesheet" type="text/css">
+            .left_col {
+                height : 100%;
+                background: #722898;
+            }
+            .nav_title{
+                background: #722898;
+            }
+            body{
+                background: #722898;
+            }
+        </style>
     </head>
     <body class="nav-md">
         <div class="container body">

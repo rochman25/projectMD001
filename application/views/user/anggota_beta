@@ -1,0 +1,144 @@
+<label>Anggota :</label>
+                                <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel">
+                                        <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                            <h4 class="panel-title">Anggota 1</h4>
+                                        </a>
+                                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                            <div class="panel-body">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-lg-1">
+                                                            <div class="radio">
+                                                                <label class="radio">
+                                                                    <input name="anggota1" type="radio" value="Dosen1" /> Dosen
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <div class="radio">
+                                                                <label class="radio">
+                                                                    <input name="anggota1" type="radio" value="Mahasiswa1" /> Non Dosen
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group hidden" style="margin-left:30px">
+                                                    <label class="control-label" for="feedback_bad">
+                                                        NIDN :
+                                                    </label>
+                                                    <select class="form-control" name="nidnAng1" id="nidn1">
+                                                        <?php if ($dosen != null) {
+                                                                foreach ($dosen as $d) {?>
+                                                        <option>
+                                                            <?=$d['nidn']?>
+                                                        </option>
+                                                        <?php } 
+                                                            }else{
+                                                                echo "<option></option>";
+                                                            } ?>
+                                                    </select>
+                                                    <label class="control-label" for="feedback_bad">
+                                                        Nama :
+                                                    </label>
+                                                    <input type="text" disabled class="form-control" name="namaAng1">
+                                                </div>
+                                                <div class="form-group hidden" style="margin-left:30px" id="div_anggota1">
+                                                    <div>
+                                                        <label class="control-label " for="testimonial">
+                                                            NIP / NIK / NIM
+                                                        </label>
+                                                        <div>
+                                                            <input type="text" class="form-control" name="nim1">
+                                                        </div>
+                                                        <label class="control-label " for="testimonial">
+                                                            Nama
+                                                        </label>
+                                                        <div>
+                                                            <input type="text" class="form-control" name="namaAng1">
+                                                        </div>
+                                                        <!-- <label class="control-label " for="testimonial">
+                                                                Angkatan
+                                                            </label>
+                                                            <div>
+                                                                <input type="text" class="form-control" name="angkMhs">
+                                                            </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel">
+                                        <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
+                                            aria-expanded="false" aria-controls="collapseTwo">
+                                            <h4 class="panel-title">Anggota 2</h4>
+                                        </a>
+                                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                            <div class="panel-body">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-lg-1">
+                                                            <div class="radio">
+                                                                <label class="radio">
+                                                                    <input name="anggota2" type="radio" value="Dosen2" /> Dosen
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <div class="radio">
+                                                                <label class="radio">
+                                                                    <input name="anggota2" type="radio" value="Mahasiswa2" /> Non Dosen
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group hidden" style="margin-left:30px">
+                                                    <label class="control-label" for="feedback_bad">
+                                                        NIDN :
+                                                    </label>
+                                                    <select class="form-control" name="nidnAng" id="nidn2">
+                                                        <?php if ($dosen != null) {
+                                                                foreach ($dosen as $d) {?>
+                                                        <option>
+                                                            <?=$d['nidn']?>
+                                                        </option>
+                                                        <?php } 
+                                                            }else{
+                                                                echo "<option></option>";
+                                                            } ?>
+                                                    </select>
+                                                    <label class="control-label" for="feedback_bad">
+                                                        Nama :
+                                                    </label>
+                                                    <input type="text" disabled class="form-control" name="namaAng2">
+                                                </div>
+                                                <div class="form-group hidden" style="margin-left:30px" id="div_anggota2">
+                                                    <div>
+                                                        <label class="control-label " for="testimonial">
+                                                            NIP / NIK / NIM
+                                                        </label>
+                                                        <div>
+                                                            <input type="text" class="form-control" name="nim2">
+                                                        </div>
+                                                        <label class="control-label " for="testimonial">
+                                                            Nama
+                                                        </label>
+                                                        <div>
+                                                            <input type="text" class="form-control" name="namaAng2">
+                                                        </div>
+                                                        <!-- <label class="control-label " for="testimonial">
+                                                                Angkatan
+                                                            </label>
+                                                            <div>
+                                                                <input type="text" class="form-control" name="angkMhs">
+                                                            </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
